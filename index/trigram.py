@@ -47,32 +47,6 @@ def find_contiguous_trigrams(string):
     return find_contiguous_ngrams(string, make_indices(string), 3)
 
 
-def unzip(sequence):
-    return zip(
-            islice(sequence, 0, len(sequence)-1),
-            islice(sequence, 1, len(sequence)))
-
-
-def is_contiguous_sequence(sequence):
-    def is_contiguous_pair(pair):
-        first, second = pair
-        return second == first + 1
-    return all_of(unzip(sequence), is_contiguous_pair)
-
-
-def find_sequential_ngrams(string, ngram_length):
-    indices_of_ngrams = (ngram_indices
-            for ngram_indices in combinations(range(len(string)), ngram_length)
-            if not is_contiguous_sequence(ngram_indices))
-    return ((first(ngram_indices), last(ngram_indices),
-        to_string(make_subsequence(string, ngram_indices)).lower())
-        for ngram_indices in indices_of_ngrams)
-
-
-def find_sequential_trigrams(string):
-    return find_sequential_ngrams(string, 3)
-
-
 def find_nonoverlapping_ngrams(string, ngram_length):
     ngrams = tuple(find_contiguous_ngrams(string, make_indices(string),
         ngram_length))

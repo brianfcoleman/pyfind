@@ -1,5 +1,4 @@
 from index.trigram import find_contiguous_trigrams
-from index.trigram import find_sequential_trigrams
 from os.path import basename
 from itertools import groupby
 from utils.functional import make_nth, ungroupby
@@ -73,12 +72,8 @@ def make_index(file_paths):
     file_paths = [file_path for _, file_path in file_names_and_paths]
     contiguous_trigrams = tuple(find_file_name_trigrams(file_names,
             find_contiguous_trigrams))
-    sequential_trigrams = tuple(find_file_name_trigrams(file_names,
-            find_sequential_trigrams))
     contiguous_trigrams = make_trigram_index(file_names,
             contiguous_trigrams)
-    sequential_trigrams = make_trigram_index(file_names,
-            sequential_trigrams)
-    return (file_names, file_paths, contiguous_trigrams, sequential_trigrams)
+    return (file_names, file_paths, contiguous_trigrams)
 
 

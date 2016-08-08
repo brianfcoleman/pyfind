@@ -126,14 +126,10 @@ def search_indexed_trigrams(indexed_trigrams, search_trigrams):
 
 def search(index, search_string):
     search_trigram_sequences = find_search_trigram_sequences(search_string)
-    file_names, file_paths, contiguous_trigrams, sequential_trigrams = index
-    matching_trigrams = chain(
-            chain.from_iterable(
-                    map(partial(search_indexed_trigrams, contiguous_trigrams),
-                    search_trigram_sequences)),
-            chain.from_iterable(
-                    map(partial(search_indexed_trigrams, sequential_trigrams),
-                    search_trigram_sequences)))
+    file_names, file_paths, contiguous_trigrams = index
+    matching_trigrams = chain.from_iterable(
+            map(partial(search_indexed_trigrams, contiguous_trigrams),
+                search_trigram_sequences))
     return matching_trigrams
 
 
