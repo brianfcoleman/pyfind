@@ -46,5 +46,15 @@ def rest(sequence):
     return sequence[1:]
 
 
+def last(sequence):
+    return sequence[-1]
+
+
 def empty():
     return tuple()
+
+
+def at(sequence, index):
+    return sequence[index]
+
+

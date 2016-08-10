@@ -2,10 +2,7 @@ from index.trigram import find_contiguous_trigrams
 from os.path import basename
 from itertools import groupby
 from utils.functional import make_nth, ungroupby
-
-
-def first(elements):
-    return elements[0]
+from utils.functional import is_empty, first, rest
 
 
 def find_file_names_and_paths(file_paths):
@@ -20,18 +17,6 @@ def group_file_names_and_paths(file_paths):
 
 def find_file_name_trigrams(file_names, make_trigrams):
     return (tuple(make_trigrams(file_name)) for file_name in file_names)
-
-
-def is_empty(sequence):
-    return len(sequence) == 0
-
-
-def first(sequence):
-    return sequence[0]
-
-
-def rest(sequence):
-    return sequence[1:]
 
 
 def make_multilevel_map(elements, key_getters):
